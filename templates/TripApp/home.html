@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  {% load static %}
+  
+  <link rel="stylesheet" type="text/css" href="{% static 'TripApp/css/style.css' %}">
+
+    <style>
+      
+      body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif ;
+        background: #0b0a0a;
+      }
+
+      ul {
+        list-style-type: none;
+        margin: auto;
+        padding:auto;
+      }
+      
+      li {
+        display: inline;
+      }
+      .container {
+        position: relative;
+        display: inline-block;
+      }
+  
+      /* Style for the image */
+     
+      /* Style for the text overlay */
+      .text-overlay {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: white;
+        font-size: 72px;
+        font-weight: bold;
+        text-align: center;
+        background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+        padding: 10px 20px;
+      }
+      h2{
+        color: rgb(213, 32, 220);
+        text-align: center;
+      }
+    h3{
+      color: rgb(255, 255, 255);
+    }
+    .product-list {
+      display: flex; /* Use flexbox layout */
+      flex-wrap: wrap; /* Allow items to wrap onto multiple lines */
+      list-style: none; /* Remove default list styling */
+      padding: 0;
+      margin: 0; /* Remove default margin */
+  }
+  .product-item {
+      width: calc(33.3333%); /* Set width for each item to be one-third of the container width */
+      box-sizing: border-box; /* Include padding and border in the element's total width and height */
+      border: 1px solid #0a0a0a; /* Add a border for better visualization */
+      padding: 10px; /* Add padding for better spacing */
+  }
+  .buy-button {
+    background-color: #4CAF50; /* Green background */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+.middle{
+  color: #ddd;
+  text-justify: auto;
+}
+a{
+  color: #ddd;
+  text-underline-offset: auto;
+  text-decoration: none; /* Remove underline */
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+}
+footer{
+  color: aliceblue;
+}
+/* Reset default margin and padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Style for the footer */
+footer {
+  background-color: #000;
+  color: #fff;
+  padding: 50px 0;
+  text-align: center;
+}
+
+/* Container for footer content */
+.footer-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+/* Columns in the footer */
+.footer-column {
+  flex: 1;
+  margin: 0 20px;
+}
+
+/* Style for headings in the footer */
+.footer-column h3 {
+  margin-bottom: 20px;
+}
+
+/* Style for links in the footer */
+.footer-column a {
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Style for links in the footer on hover */
+.footer-column a:hover {
+  text-decoration: underline;
+}
+    </style>
+      
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TripApp</title>
+
+</head>
+
+<body>
+{% block content %}
+{% endblock %}
+
+
+    <div class="topnav">
+    <ul>
+        <li><a class="activate" href="hotels">Hotels<a></li>
+        <li><a href="restuarants">Restuarants<a></li>
+        <li><a href="tourpackages">TourPackages<a></li>
+        <li>
+            <select>
+            <option value="{% url 'flight' %}">Transportation</option> 
+            <option value="{% url 'flight' %}">Flight</option>
+            <option><a href="cruise">Cruise</a></option>
+            <option><a href="car">Car</a></option>
+          </select>
+          </li>
+        <li><a href="company">Company</a></li>
+    </ul>
+    </div>
+
+    <div class="container">
+        <img src="{% static 'TripApp/images/bg2.jpg' %}" alt="Image" height="400px" width="1500px">
+        <div class="text-overlay">Explore your next destination with us</div>
+      </div>
+  <section>  
+    <!-- <h1>If you can read this, yes we are working </h1> -->
+   <h2> Our new summer plans</h2>
+   <ul class="product-list">
+    {% for des in dests %}
+    
+    <li class="product-item"> <h3> {{des.name}} <br>
+    <img src="{{des.image.url}}" width="450px" height="400px" alt="kittum kittathe evide pokan"><br>
+    {{des.desc}}<br>
+    {{des.price}}<br>
+    {{des.offer}}<br>
+    <form method="post" action="{% url 'product_display' des.id %}" >
+      {% csrf_token %}
+    <button class="buy-button">Buy Now</button>
+  </form>
+
+   </h3></li>
+   {% endfor %}
+
+  </ul>
+  </section>
+  <section>
+    <div class="middle">
+        <h3>Sepcial offers </h3>
+        <p>Star trvels offers summer special tour pacakges espcially for students .If you are a student 
+            and love to travel contact with us and sed your id card and details in <a>startraceks@gmail.com</a>
+            We will contact you and uncovers the sepcial destinations that exclusively for you . Be a prime customer 
+            and we provides up to 20% offersin every packages . We are holding an experice of 15 years of industry and qhave
+             134 branches across India . You can check the rivews that are provided bytbthe earlier trvellers and can decide a good decision to be with us . 
+            We also encourages the out bond travelimng . Most of the out binds are towards makka.Its not a just a matter f tour . 
+            its is a bilifds of exchanging soc9al cuturl noms . as fars we are a pet of thstat thing and its gong to be increswed 
+            as well as in upcoming years . 
+            So we also helping for trael vusa documentstion and passport
+            applicatuin . we also helps to get admission in abrad univerisitues whree student are interetsted to be in . so connct wirh us frntrace to 
+            varuis ersupiuan contieriws .Embark on a journey of exploration and
+             discovery with our exclusive offers that promise to ignite your wanderlust and satisfy your craving for adventure. 
+             Whether you're dreaming of scaling the majestic peaks of the Himalayas, d
+            elving into the vibrant cultures of Rajasthan, or basking in the sun-drenched beaches of Goa,
+             our handpicked selection of travel deals is sure to inspire your next great escapade.
+            Immerse yourself in the timeless beauty of India's diverse landscapes as you traverse ancient trails, 
+            meander through bustling bazaars, and uncover hidden gems tucked away in every corner of the country. 
+            From luxurious retreats to off-the-beaten-path adventures, our range of offers caters to every type of traveler, 
+            ensuring that your journey with Star Travels is nothing short of extraordinary.
+
+        </p><br>
+        <h3>Important Links</h3>
+        
+        <a href="#"> <p>Studentpackages Kerlapackages Piligrims SouthIndiantours Munnar Wayanad Kochi
+          CalicutTrip Chennai Kashmir Goapackages Visagapattanam Himalayan Rajasthajn Jaisalmeer Jarusalem Banglore Hampi Hallibbedu
+          Pattadakkalu Alora Agra Delhi Vijayavithalagudi KasargodKOtta Alappy Kollam Kochi Andra Telungana Mahe Puduchery Kolavippalam
+          Pineforst  OOty Muthanga Kodaikkanal 
+        </p></a>
+    </div>
+</section> 
+<footer>
+  <div class="footer-container">
+      <div class="footer-column">
+          <h3>About Us</h3>
+          <p>Discover the world with our travel app. We provide the best travel experiences and destinations.Travel with us we take you to dream destinations.</p>
+      </div>
+      <div class="footer-column">
+          <h3>Contact Us</h3>
+          <p>Email: info@travelapp.com</p>
+          <p>Phone: +1 123-456-7890</p>
+      </div>
+      <div class="footer-column">
+          <h3>Follow Us</h3>
+          <ul>
+              <li><a href="#">Facebook</a></li>
+              <li><a href="#">Twitter</a></li>
+              <li><a href="#">Instagram</a></li>
+          </ul>
+      </div>
+  </div>
+</footer>
+
+
+</body>
+</html>

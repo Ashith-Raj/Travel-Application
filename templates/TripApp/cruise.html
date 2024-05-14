@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<style>
+    body{
+        background: #000000;
+        color: #069f53;
+    }
+    ul {
+        list-style-type: none;
+        margin: auto;
+        padding:auto;
+      }
+      
+      li {
+        display: inline;
+      }
+      .topnav {
+        overflow: hidden;
+        background-color: #000000;
+      }
+      
+      .topnav a {
+        float: left;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+      }
+      
+      .topnav a:hover {
+        background-color: #ddd;
+        color: black;
+      }
+      
+      .topnav a.active {
+        background-color: #04AA6D;
+        color: white;
+      }    
+</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>navbar
+
+    </title>
+</head>
+<body>
+    
+    <div class="topnav">
+        <ul>
+            <li><a class="activate" href="{% url 'home' %}">Home<a></li>
+            <li><a class="activate" href="{% url 'hotels' %}">Hotels<a></li>
+            <li><a href="{% url 'restuarants' %}">Restuarants<a></li>
+            <li><a href="{% url 'tourpackages' %}">TourPackages<a></li>
+            <li>
+                <select>
+                <option value="{% url 'flight' %}">Transportation</option> 
+                <option value="{% url 'flight' %}">Flight</option>
+                <option><a href="{% url 'cruise' %}">Cruise</a></option>
+                <option><a href="{% url 'car' %}">Car</a></option>
+              </select>
+              </li>
+            <li><a href="{% url 'company' %}">Company</a></li>
+        </ul>
+        </div> 
+        <h2> for a test </h2>
+</body>
+</html>

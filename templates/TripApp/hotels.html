@@ -1,0 +1,127 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<style>
+    h2{
+        text-align: center;
+        color: rgb(234, 38, 182);
+    }
+    body{
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif ;
+        background: #000000;
+        color: #fcfcfc;
+    }
+    ul {
+        list-style-type: none;
+        margin: auto;
+        padding:auto;
+      }
+      
+      li {
+        display: inline;
+      }
+      .topnav {
+        overflow: hidden;
+        background-color: #000000;
+      }
+      
+      .topnav a {
+        float: left;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+      }
+      
+      .topnav a:hover {
+        background-color: #ddd;
+        color: black;
+      }
+      
+      .topnav a.active {
+        background-color: #04AA6D;
+        color: white;
+      } 
+      .product-list {
+        display: flex; /* Use flexbox layout */
+        flex-wrap: wrap; /* Allow items to wrap onto multiple lines */
+        list-style: none; /* Remove default list styling */
+        padding: 0;
+        margin: 0; /* Remove default margin */
+    }
+    .product-item {
+        width: calc(33.3333%); /* Set width for each item to be one-third of the container width */
+        box-sizing: border-box; /* Include padding and border in the element's total width and height */
+        border: 1px solid #0a0a0a; /* Add a border for better visualization */
+        padding: 10px; /* Add padding for better spacing */
+    }
+    .buy-button {
+      background-color: #4CAF50; /* Green background */
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+      border-radius: 4px;
+  } 
+    
+</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotels
+
+    </title>
+</head>
+<body>
+    
+    <div class="topnav">
+        <ul>
+            <li><a class="activate" href="{% url 'home' %}">Home<a></li>
+            <li><a class="activate" href="{% url 'hotels' %}">Hotels<a></li>
+            <li><a href="{% url 'restuarants' %}">Restuarants<a></li>
+            <li><a href="{% url 'tourpackages' %}">Tour Packages<a></li>
+            <li>
+                <select>
+                <option value="{% url 'flight' %}">Transportation</option> 
+                <option value="{% url 'flight' %}">Flight</option>
+                <option><a href="{% url 'cruise' %}">Cruise</a></option>
+                <option><a href="{% url 'car' %}">Car</a></option>
+              </select>
+              </li>
+            <li><a href="{% url 'company' %}">Company</a></li>
+            <li><form action="{% url 'search_results' %}" method="GET">
+                <input type="text" name="query" placeholder="Enter your location ">
+                <button type="submit">Search</button>
+                </form>
+            </li>
+        </ul>
+        </div> 
+        
+
+        <section>  
+            <!-- <h1>If you can read this, yes we are working </h1> -->
+            <h2 >Available hotels</h2>
+           <ul class="product-list">
+            {% for hot in hotels %}
+            <li class="product-item"> <h3> {{hot.hname}} <br>
+           <li><img src="{{hot.himageb.url}}" width="450px" height="400px" alt="kittum kittathe evide pokan"></li> <br>
+            {{hot.hlocation}}<br>
+            {{hot.hrating}}<br>
+            {{hot.hprice}}<br>
+            {{hot.hdesc}}<br>
+            <button class="buy-button">View hotel</button>
+           </h3></li>
+           {% endfor %}
+          </ul>
+          </section>  
+       
+</body>
+</html>
