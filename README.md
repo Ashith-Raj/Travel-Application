@@ -1,0 +1,1 @@
+Star Travels is a conceptual travel application which made for tour package selling, hotel room booking, restuarant booking, and sevrvice providing through various tourism sectors. This is a demonstrartion of how online travel agencies applications are made.  
